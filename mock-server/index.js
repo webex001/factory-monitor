@@ -9,7 +9,7 @@ const {
 } = require("./data");
 
 const app = express();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 8000;
 
 app.use(cors());
 app.use(express.json());

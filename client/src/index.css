@@ -1,3 +1,9 @@
 @import "tailwindcss";
 
+@import 'tailwindcss';
+
+body {
+  margin: 0;
+  color-scheme: light;
+}
 

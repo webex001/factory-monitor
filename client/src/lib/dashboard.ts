@@ -2,8 +2,9 @@ import type { Station, UtilisationSample } from '@/types/station'
 
 // Config values, not derived from telemetry — nothing in the domain model
 // represents a planning target, so these are named constants rather than a
-// faked computation. See README "What's implemented vs. cut".
-export const DAILY_THROUGHPUT_TARGET = 160
+// faked computation.
+// export const DAILY_THROUGHPUT_TARGET = 160
+export const DAILY_THROUGHPUT_TARGET = 5000
 export const UTILISATION_TARGET_PCT = 75
 
 export function stationsRunning(stations: Station[]): { running: number; total: number } {
@@ -17,8 +18,7 @@ export function activeFaultStations(stations: Station[]): Station[] {
 /**
  * M06 (Shipping Station) only increments this once a valve has passed every
  * upstream station, so it's a genuine throughput signal, not a mock value.
- * This task treats "shift" as "today" — the doc doesn't define shift
- * boundaries, so that's a stated assumption, not a hidden one.
+ * This task treats "shift" as "today".
  */
 export function throughputToday(stations: Station[]): number {
   const shipping = stations.find((s) => s.id === 'M06')

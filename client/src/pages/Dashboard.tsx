@@ -51,6 +51,8 @@ export function Dashboard() {
   const utilisationPctNow =
     liveSamples.length > 0 ? liveSamples[liveSamples.length - 1].utilisationPct : null
 
+  const stationsNotProducing = running.total - running.running
+
   return (
     <>
       <TopBar crumbs={['Factory Status', 'Dashboard']} />
@@ -107,9 +109,14 @@ export function Dashboard() {
                 label="Stations running"
                 value={`${running.running}/${running.total}`}
                 subtitle={
-                  running.total - running.running > 0
-                    ? `${running.total - running.running} not producing`
+                  stationsNotProducing > 0
+                    ? `${stationsNotProducing} not producing`
                     : 'All producing'
+                }
+                  topAccentClass={
+                  stationsNotProducing >= running.running
+                    ? STATUS_TOKENS.idle.topBorderClass
+                    : undefined
                 }
               />
 
