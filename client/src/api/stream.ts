@@ -1,6 +1,6 @@
 import type { Station } from '@/types/station'
 
-const API_BASE = 'https://factory-monitor-c29s.onrender.com/'
+const API_BASE = 'https://factory-monitor-c29s.onrender.com'
 
 interface StreamHandlers {
   onOpen: () => void
