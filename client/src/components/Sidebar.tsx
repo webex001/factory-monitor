@@ -10,6 +10,7 @@ import {
   Settings,
   LogOut,
 } from 'lucide-react'
+import { useStations } from '@/hooks/useStations'
 
 const navLinkClass = ({ isActive }: { isActive: boolean }) =>
   `flex items-center gap-2.5 rounded-md px-3 py-2 text-sm font-medium transition-colors ${
@@ -35,6 +36,7 @@ const CONNECTION_DOT: Record<string, string> = {
 }
 
 export function Sidebar() {
+  const { connectionStatus } = useStations()
 
   return (
     <aside className="flex h-full w-60 shrink-0 flex-col bg-slate-900 text-slate-300">
@@ -42,7 +44,15 @@ export function Sidebar() {
         <div className="text-xl font-bold tracking-tight text-white">DOMIN</div>
         <div className="mt-1 flex items-center gap-1.5 text-[11px] font-medium tracking-wide text-slate-400 uppercase">
           Factory status
-          
+          <span
+            className={`inline-flex items-center gap-1 normal-case ${CONNECTION_TEXT[connectionStatus]}`}
+          >
+            <span
+              aria-hidden="true"
+              className={`h-1.5 w-1.5 rounded-full ${CONNECTION_DOT[connectionStatus]}`}
+            />{' '}
+            {CONNECTION_LABEL[connectionStatus]}
+          </span>
         </div>
       </div>
 

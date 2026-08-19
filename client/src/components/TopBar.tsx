@@ -1,4 +1,6 @@
 import { Bell } from 'lucide-react'
+import { useClock } from '@/hooks/useClock'
+import { useStations } from '@/hooks/useStations'
 
 const CONNECTION_LABEL: Record<string, string> = {
   live: 'Live',
@@ -13,13 +15,27 @@ const CONNECTION_DOT: Record<string, string> = {
 }
 
 export function TopBar({ crumbs }: { crumbs: string[] }) {
-  
+  const { time, date } = useClock()
+  const { connectionStatus } = useStations()
 
   return (
     <div className="flex items-center justify-between border-b border-slate-200 bg-white px-6 py-3">
       <div className="text-sm text-slate-500">{crumbs.join(' / ')}</div>
       <div className="flex items-center gap-4">
-        
+        <div className="flex items-center gap-1.5 text-xs font-medium text-slate-600">
+          <span
+            aria-hidden="true"
+            className={`h-1.5 w-1.5 rounded-full ${CONNECTION_DOT[connectionStatus]}`}
+          />
+          {/* Only the status word is a live region — the clock ticks every 15s
+              and would otherwise get re-announced to screen readers on every tick. */}
+          <span role="status" aria-live="polite">
+            {CONNECTION_LABEL[connectionStatus]}
+          </span>{' '}
+          <span>
+            · {time} · {date}
+          </span>
+        </div>
         <button
           type="button"
           aria-label="Notifications"
