@@ -82,9 +82,7 @@ app.get("/api/health", (_req, res) => {
   res.json({ ok: true, stations: getStation("M01") ? 6 : 0 });
 });
 
-// Test-only: force-closes every open SSE connection so E2E tests can
-// exercise the client's "reconnecting" UI without killing the whole
-// server process. Not part of the API a real client would call.
+
 app.post("/api/test/drop-stream", (_req, res) => {
   const dropped = streamClients.size;
   for (const client of streamClients) client.end();
