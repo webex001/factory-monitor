@@ -1,10 +1,9 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-// import { Layout } from '@/components/Layout'
-import { ErrorBoundary } from '@/components/ErrorBoundary'
 import { Stations } from '@/pages/Stations'
 import { Dashboard } from '@/pages/Dashboard'
 import { FloorMap } from '@/pages/FloorMap'
 import { Layout } from './components/Layout'
+import { ErrorBoundary } from './components/ErrorBoundary'
 
 function App() {
   return (

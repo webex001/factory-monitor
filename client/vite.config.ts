@@ -15,7 +15,8 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:4000',
+        target: 'https://factory-monitor-c29s.onrender.com',
+        // target: 'http://localhost:4000',
         changeOrigin: true,
         // Handles a *new* request hitting a dead upstream (e.g. mock
         // server not running yet) by returning 502 instead of hanging.

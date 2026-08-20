@@ -1,7 +1,5 @@
 import type { Station } from '@/types/station'
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL ?? ''
-
 interface StreamHandlers {
   onOpen: () => void
   onMessage: (stations: Station[]) => void
@@ -10,7 +8,7 @@ interface StreamHandlers {
 
 /** Opens the live station feed. Returns a cleanup function that closes it. */
 export function openStationsStream({ onOpen, onMessage, onError }: StreamHandlers): () => void {
-  const source = new EventSource(`${API_BASE}/api/stream`)
+  const source = new EventSource('/api/stream')
 
   source.onopen = onOpen
   source.onerror = onError
